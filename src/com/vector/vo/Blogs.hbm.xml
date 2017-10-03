@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vector.vo.Blogs" table="blog_blogs">
+	<!-- 必须用Integer -->
+		<id name="bid" column="bid">
+			<generator class="native"></generator>
+		</id>
+		<property name="title" column="title"></property>
+		<property name="content" column="content"></property>
+		<property name="publishDate" column="publishDate"></property>
+		<property name="image" column="image"></property>
+		<property name="titleImage" column="titleImage"></property>
+		<many-to-one name="user" class="com.vector.vo.User" column="id" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>
