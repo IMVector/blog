@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.ui.theme" value="simple"></constant>
+
+	<package name="blog" extends="struts-default" namespace="/">
+		<action name="blog_*" class="userAction" method="{1}">
+			<result name="registUI">/regist.jsp</result>
+			<result name="regist">/login.jsp</result>
+			<result name="registInput">/regist.jsp</result>
+			<result name="loginSuccess">/first.jsp</result>
+			<result name="loginInput">/login.jsp</result>
+			<result name="first">/first.jsp</result>
+			<result name="personal">/personal.jsp</result>
+			<result name="time">/time.jsp</result>
+			<result name="goToContent">/content.jsp</result>
+
+		</action>
+
+	</package>
+
+</struts>
