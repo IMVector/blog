@@ -130,10 +130,12 @@
                 </div>
 
                 <div class="page-header text-center">
-                    <h1>主标题<s:property value="currentBlog.title"/><small>副标题</small></h1>
+                    <h1>主标题${currentBlog.title}<small>副标题</small></h1>
                 </div>
                 <div>
-                    <s:property value="currentBlog.content"/>
+                    <%--<s:property value="currentBlog.content"/>--%>
+                    ${currentBlog.content}
+
                     <br>
                     <br>
                     <br>

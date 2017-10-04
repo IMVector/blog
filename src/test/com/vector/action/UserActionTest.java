@@ -8,6 +8,7 @@ import com.vector.vo.Blogs;
 import com.vector.vo.User;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.struts2.ServletActionContext;
 import org.junit.Test;
 import org.junit.Before; 
@@ -110,14 +111,40 @@ public void testLogin() throws Exception {
 */ 
 @Test
 public void testGetBlogs() throws Exception {
-    User u=new User();
-    u.setNickName("adsf");
-    u.setId(1);
-    Blogs blogs=new Blogs();
-    blogs.setTitle("afss");
-    blogs.setContent("asdfsdf");
-    JSONArray jsonArray2 = JSONArray.fromObject(blogs);
-    System.out.println(jsonArray2.toString());
+    String str="&nbsp;&nbsp;&nbsp;&nbsp;\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;(e)&nbsp;{\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(.getEditor(&#39;editor&#39;).());\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...(e)\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\n" +
+            "\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;(e)&nbsp;{\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getEditor(&#39;editor&#39;).();\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...(e)\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\n" +
+            "\n" +
+            "\n" +
+            "&lt;/body&gt;\n" +
+            "\n" +
+            "&lt;/html&gt;</pre><p><br/></p><p>|||||[{id=1}{title=231}{publishDate=2017/10/4/16/48}{image=null}{titleImage=null}]|||||</p>";
+    System.out.println(str.indexOf("|||||["));
+    System.out.println(str.indexOf("]|||||"));
+    int start=str.indexOf("|||||[")+6;
+    int end=str.indexOf("]|||||");
+    System.out.println(str.substring(start,end));
+    String newStr=str.substring(start,end);
+    String []strArray=newStr.split("}");
+    String []finalStr=new String[5];
+    for(int i=0;i<strArray.length;i++){
+        String []temp=strArray[i].split("=");
+        finalStr[i]=temp[1];
+        System.out.println(finalStr[i]);
+    }
+    String newContent=str.substring(0,start);
+    System.out.println(newContent);
+//    System.out.println(strArray);
+//    String newJson = StringEscapeUtils.unescapeHtml4(str.substring(start,end));
+//    System.out.println(newJson);
+
 }
 
 

@@ -38,26 +38,24 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <p class="text-center"></p>
-            <a><input type="text" id="title" placeholder="在此输入文章标题"></a>
+            <input type="text" id="title" style="font-weight:bold;color:#000000" placeholder="在此输入文章标题" />
             <br>
             <a class="btn btn-danger col-md-offset-9" href="${pageContext.request.contextPath}/blog_first.action">退出</a>
             <a class="btn btn-warning " href="">暂存</a>
-            <a class="btn btn-info " href="">提交</a>
+            <a class="btn btn-info " href="javascript:getContent()">提交</a>
         </div>
-        <!-- <%--blog_saveBlog.action?id=<s:property value="#session.user.id">&--%> -->
-        <form id="contentForm" action="#" method="post">
+        <form id="contentForm" action="${pageContext.request.contextPath}/Tblog_saveBlog.action" method="psot">
             <script id="editor" type="text/plain" style="height:600px;"></script>
-            <button onclick="getContent()"> 获得内容 </button>
-                </form>
-                </div>
-                </div>
+
+            </form>
+            </div>
+            </div>
 
 
-                <script type="text/javascript">
+            <script type="text/javascript">
             //实例化编辑器
             //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
             var ue = UE.getEditor('editor');
-
 
             function isFocus(e) {
                 alert(UE.getEditor('editor').isFocus());
@@ -84,15 +82,10 @@
             }
 
             function getContent() {
-                //            alert(arr.join("\n"));
-                //            var arr = [];
-                //            arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-                //            arr.push("内容为：");
-                //            arr.push(UE.getEditor('editor').getContent());
+
                 if (UE.getEditor('editor').hasContents()) {
                     var content = UE.getEditor('editor').getContent();
-                    console.log(content);
-                    var title = $("title").val();
+                    var title = $("#title").val();
                     //获取日期
                     var date = new Date();
                     var day = date.getDate();
@@ -117,34 +110,38 @@
                             if (src[1]) {
                                 image += src[1];
                                 image += "()";
-                                //                        console.log('已匹配的图片地址'+(i+1)+'：'+src[1]);
+                                //console.log('已匹配的图片地址'+(i+1)+'：'+src[1]);
                             }
 
                         }
                     }
-                    var act = "${pageContext.request.contextPath}/blog_saveBlog.action?";
-                    var str1 = "id=" + '<%=session.getAttribute("user.id")%>';
-                    var str2 = "&content=" + content;
-                    var str3 = "";
-                    var str4 = "";
-                    if (image != null && image != "") {
-                        str3 = "&image=" + image;
-                        str4 = "&titleImage=" + titleImage;
-                    } else {
-                        str3 = "&image=" + "null";
-                        str4 = "&titleImage=" + "null";
+                    var act = "${pageContext.request.contextPath}/Tblog_saveBlog.action";
+                    if(title == null || title == undefined || title == "") {
+                    title="标题偷偷跑了";
                     }
-                    var action = act + str1 + str2 + str3 + str4;
-                    alert(action)
-                    $("#contentForm").attr("action", action);
+
+                    <%--//el表达式获取session中的值--%>
+                    <%--${sessionScope.user.id}--%>
+                    <%--console.log( ${sessionScope.user.id})--%>
+                    <%--alert( ${sessionScope.user.id});--%>
+                    var str2 = "";
+                    var str3 = "";
+                    <%--//无图处理--%>
+                    if (image !== null && image !== "" && image !== undefined) {
+                    str2 =image;
+                    str3 =titleImage;
+                    } else {
+                    str2 ="null";
+                    str3 ="null";
+                    }
+                    //字符串拼接
+                    var hideStr="|||||[{title="+title+"}{image="+str2+"}{titleImage="+str3+"}]|||||";
+                    //向edit添加内容
+                    UE.getEditor('editor').setContent(hideStr, true);
+                    $("#contentForm").attr({ "action": act, "method": "post" });
                     $("#contentForm").submit();
-                    console.log(action);
 
                 }//if
-
-
-
-
             }
 
             function getPlainTxt() {
@@ -251,3 +248,5 @@
 </body>
 
 </html>
+
+
