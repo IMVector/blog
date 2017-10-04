@@ -25,9 +25,8 @@ import org.json.JSONObject;
 import javax.xml.ws.Response;
 
 public class UserAction extends ActionSupport implements ModelDriven {
-
-    private User user = new User();
     private Blogs blog=new Blogs();
+    private User user = new User();
     private UserService userService;
     private BlogService blogService;
 
@@ -164,14 +163,18 @@ public class UserAction extends ActionSupport implements ModelDriven {
         ActionContext.getContext().getValueStack().set("currentBlog",currentblog);
         return "goToContent";
     }
+//        public void setBlog(Blogs blog){
+//        this.blog=blog;
+//    }
+//    /**
+//     *保存博客
+//     */
+//    public String saveBlog(){
+//        blogService.saveBlog(blog);
+//        return "saveBlog";
+//    }
 
 }
-
-
-
-
-
-
 
 
 //{

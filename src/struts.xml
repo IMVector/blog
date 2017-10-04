@@ -17,8 +17,10 @@
 			<result name="personal">/personal.jsp</result>
 			<result name="time">/time.jsp</result>
 			<result name="goToContent">/content.jsp</result>
-
 		</action>
+		<!--<action name="blog_*" class="blogAction" method="{1}">-->
+			<!--<result name="saveBlog">/content.jsp</result>-->
+		<!--</action>-->
 
 	</package>
 

@@ -30,4 +30,9 @@ public class BlogDaoImpl extends HibernateDaoSupport implements BlogDao {
         }
         return null;
     }
+
+    @Override
+    public void saveBlog(Blogs blog) {
+        this.getHibernateTemplate().save(blog);
+    }
 }

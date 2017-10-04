@@ -26,4 +26,9 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getBlogByID(bid);
     }
 
+    @Override
+    public void saveBlog(Blogs blog) {
+        blogDao.saveBlog(blog);
+    }
+
 }

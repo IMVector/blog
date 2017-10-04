@@ -9,4 +9,6 @@ public interface BlogService {
     public List<Blogs> getBlog(Integer id);
 
     public Blogs getBlogByID(Integer bid);
+
+    public void saveBlog(Blogs blog);
 }
