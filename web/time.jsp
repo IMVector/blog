@@ -27,6 +27,14 @@
     <link href="${pageContext.request.contextPath}/blogFace/assets/css/timeline.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/blogFace/assets/js/modernizr.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/blogFace/assets/js/jquery-1.8.3.min.js"></script>
+    <!--ueditor必须-->
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/blogFace/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/blogFace/ueditor.all.min.js">
+    </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/blogFace/lang/zh-cn/zh-cn.js"></script>
+
 
 </head>
 
@@ -87,10 +95,33 @@
             <!-- cd-timeline-img -->
 
             <div class="cd-timeline-content">
-                <h2>标题</h2>
-                <p>内容</p>
-                <a href="#" class="cd-read-more">阅读更多</a>
-                <span class="cd-date">Jan 14</span>
+                <%--<h2>标题</h2>--%>
+                <%--<p>内容</p>--%>
+                <%--<a href="#" class="cd-read-more">阅读更多</a>--%>
+                <%--<span class="cd-date">Jan 14</span>--%>
+                <h1>新建足迹</h1>
+                <textarea style="height:100px;"></textarea>
+                   <ul></ul>
+                    <button type="button" id="j_upload_img_btn">图片上传</button>
+                    <button >发送</button>
+                    <ul></ul>
+                    <div class="row">
+                        <%--<s:iterator value="timeImage" var="">--%>
+                            <div class="col-xs-6 col-md-4">
+                                <a href="#" class="thumbnail">
+                                    <img src="<s:property value="#session.user.headImage"/>" alt="<s:property value="#session.user.headImage"/>">
+                                </a>
+                            </div>
+                            <ul id="upload_img_wrap"></ul>
+                            你是什么人，坏人。大坏人哼
+                            你是什么人，坏人。大坏人哼
+                            你是什么人，坏人。大坏人哼
+                            你是什么人，坏人。大坏人哼
+                            你是什么人，坏人。大坏人哼
+
+                        <%--</s:iterator>--%>
+                    </div>
+
             </div>
             <!-- cd-timeline-content -->
         </div>
@@ -104,6 +135,13 @@
 
             <div class="cd-timeline-content bounce-in">
                 <h2>标题</h2>
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <a href="#" class="thumbnail">
+                            <img src="<s:property value="#session.user.headImage"/>" alt="<s:property value="#session.user.headImage"/>">
+                        </a>
+                    </div>
+                </div>
                 <p>内容
                     内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
                     内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
@@ -112,7 +150,7 @@
                     内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
                     内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
                 </p>
-                <a href="#" class="cd-read-more">阅读更多</a>
+                <%--<a href="#" class="cd-read-more">阅读更多</a>--%>
                 <span class="cd-date">Jan 18</span>
             </div>
             <!-- cd-timeline-content -->
@@ -182,6 +220,19 @@
             <!-- cd-timeline-content -->
         </div>
         <!-- cd-timeline-block -->
+        <div class="cd-timeline-block">
+            <div class="cd-timeline-img cd-location bounce-in">
+                <img src="blogFace/images/cd-icon-location.svg" alt="Location">
+            </div>
+            <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content bounce-in">
+
+
+            </div>
+            <!-- cd-timeline-content -->
+        </div>
+        <!-- cd-timeline-block -->
     </section>
     <!-- cd-timeline -->
 
@@ -212,6 +263,60 @@
     返回顶部
 </button>
 
+<!-- 加载编辑器的容器 -->
+<textarea id="uploadEditor" style="display: none;"></textarea>
+
+<!-- 使用ue -->
+<script type="text/javascript">
+
+    // 实例化编辑器，这里注意配置项隐藏编辑器并禁用默认的基础功能。
+    var uploadEditor = UE.getEditor("uploadEditor", {
+        isShow: false,
+        focus: false,
+        enableAutoSave: false,
+        autoSyncData: false,
+        autoFloatEnabled:false,
+        wordCount: false,
+        sourceEditor: null,
+        scaleEnabled:true,
+        toolbars: [["insertimage"]]
+    });
+
+    // 监听多图上传和上传附件组件的插入动作
+    uploadEditor.ready(function () {
+        uploadEditor.addListener("beforeInsertImage", _beforeInsertImage);
+    });
+
+    // 自定义按钮绑定触发多图上传和上传附件对话框事件
+    document.getElementById('j_upload_img_btn').onclick = function () {
+        var dialog = uploadEditor.getDialog("insertimage");
+        dialog.title = '多图上传';
+        dialog.render();
+        dialog.open();
+    };
+
+
+    // 多图上传动作
+    function _beforeInsertImage(t, result) {
+        var imageHtml = '';
+        for(var i in result){
+            imageHtml += '<li><img src="'+result[i].src+'" alt="'+result[i].alt+'" height="150"></li>';
+        }
+        document.getElementById('upload_img_wrap').innerHTML = imageHtml;
+    }
+
+</script>
+<!--图片预加载-->
+<script>
+    $(document).ready(function () {
+            $("img").each(function() {
+                var image=new Image();
+                image.src=$(this).attr("src");
+                console.log(image.src);
+            });
+
+        })
+</script>
 <!-- Scripts -->
 <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
 <script>

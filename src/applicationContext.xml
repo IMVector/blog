@@ -52,6 +52,9 @@
 	<bean id="blogAction" class="com.vector.action.BlogAction" scope="prototype">
 		<property name="blogService" ref="blogService"></property>
 	</bean>
+	<bean id="timeAction" class="com.vector.action.TimeAction" scope="prototype">
+		<property name="timeService" ref="timeService"></property>
+	</bean>
 
 	<!-- service配置 -->
 	<bean id="userService" class="com.vector.service.impl.UserServiceImpl">
@@ -59,6 +62,9 @@
 	</bean>
 	<bean id="blogService" class="com.vector.service.impl.BlogServiceImpl">
 		<property name="blogDao" ref="blogDao"></property>
+	</bean>
+	<bean id="timeService" class="com.vector.service.impl.TimeServiceImpl">
+		<property name="timeDao" ref="timeDao"></property>
 	</bean>
 
 	<!-- dao配置 -->
@@ -72,6 +78,9 @@
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="timeDao" class="com.vector.dao.impl.TimeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<!-- 注解事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
