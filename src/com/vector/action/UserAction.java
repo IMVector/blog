@@ -87,11 +87,11 @@ public class UserAction extends ActionSupport implements ModelDriven {
         User u = userService.login(user);
         if (u != null) {
             ActionContext.getContext().getSession().put("user", u);//用户成功登录
-            try {
-                getBlogs();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                getBlogs();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             return "loginSuccess";
         } else {
             //登录失败跳转到input逻辑视图中，为了和regist校验区分所以加注解
@@ -134,12 +134,15 @@ public class UserAction extends ActionSupport implements ModelDriven {
         User user = (User) ActionContext.getContext().getSession().get("user");
         //用户登陆成功时查询所有内容
         List<Blogs> blogsList = blogService.getBlog(user.getId());
-        System.out.println("size is "+blogsList.size());
-        ServletActionContext.getResponse().setContentType(
-                "text/html;charset=utf-8");
-        //填充值栈
-        ActionContext.getContext().getValueStack().set("blog", blogsList);
-        //必须返回null，要不前端就没有响应fuck
+//        System.out.println("size is "+blogsList.size());
+        if(blogsList!=null&&blogsList.size()>0) {
+            ServletActionContext.getResponse().setContentType(
+                    "text/html;charset=utf-8");
+            //填充值栈
+            ActionContext.getContext().getValueStack().set("blog", blogsList);
+
+        }
+        //使用ajax时必须返回null，要不前端就没有响应fuck
         return null;
     }
 
@@ -177,7 +180,7 @@ public class UserAction extends ActionSupport implements ModelDriven {
 }
 
 
-//{
+//{ajax 传输数据时小心指针，有指针解析不了
 //        if (blogsList != null && blogsList.size() > 0) {
 //        for (Blogs b : blogsList) {
 //        //！！！！！！！非常重要，有指针解析不了，所以要把user设置为null;

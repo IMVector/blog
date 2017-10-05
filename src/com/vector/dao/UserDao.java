@@ -9,6 +9,7 @@ public interface UserDao {
 	public User findByLogonName(String email);
 
 	public User login(User user);
-	
 
+
+    public User getById(int id);
 }

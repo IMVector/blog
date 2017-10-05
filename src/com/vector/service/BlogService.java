@@ -11,4 +11,8 @@ public interface BlogService {
     public Blogs getBlogByID(Integer bid);
 
     public void saveBlog(Blogs blog);
+
+    public List<Blogs> getAllBlogs();
+
+    public List<Blogs> getBlogByTwoID(int id, int bid);
 }

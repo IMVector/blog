@@ -19,7 +19,7 @@ public class TimeDaoImpl extends HibernateDaoSupport implements TimeDao {
 
     @Override
     public List<Time> getAllTime(int id) {
-        String hql="from Time where User.id=?";
+        String hql="from Time where luser.id=?";
         List<Time> list=this.getHibernateTemplate().find(hql,id);
         if(list!=null&&list.size()>0){
             return list;

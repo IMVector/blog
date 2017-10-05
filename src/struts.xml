@@ -11,7 +11,7 @@
 			<result name="registUI">/regist.jsp</result>
 			<result name="regist">/login.jsp</result>
 			<result name="registInput">/regist.jsp</result>
-			<result name="loginSuccess">/first.jsp</result>
+			<result name="loginSuccess" type="redirectAction">public_getAllBlogs.action</result>
 			<result name="loginInput">/login.jsp</result>
 			<result name="first">/first.jsp</result>
 			<result name="personal">/personal.jsp</result>
@@ -23,6 +23,11 @@
 		</action>
 		<action name="time_*" class="timeAction" method="{1}">
 			<result name="saveTimeLine">/time.jsp</result>
+			<result name="timeLine">/time.jsp</result>
+		</action>
+		<action name="public_*" class="publicAction" method="{1}">
+			<result name="getAllBlogs">/mainPage.jsp</result>
+			<result name="getBlogByID">/publicContent.jsp</result>
 		</action>
 	</package>
 

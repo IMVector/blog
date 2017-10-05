@@ -5,28 +5,12 @@ import java.util.Date;
 
 public class Time {
     private Integer tid;
-    private String title;
-    private String image;
-    private String content;
-    private Date publishDate;
-    private User user;
-    private ArrayList imageList=new ArrayList();
-
-    public ArrayList getImageList() {
-        return imageList;
-    }
-
-    public void setImageList(ArrayList imageList) {
-        this.imageList = imageList;
-    }
-
-    public Date getPublishDate() {
-        return publishDate;
-    }
-
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
-    }
+    private String ltitle;
+    private String limage;
+    private String lcontent;
+    private Date lpublishDate;
+    private User luser;
+    private ArrayList limageList=new ArrayList();
 
     public Integer getTid() {
         return tid;
@@ -36,35 +20,51 @@ public class Time {
         this.tid = tid;
     }
 
-    public String getTitle() {
-        return title;
+    public String getLtitle() {
+        return ltitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setLtitle(String ltitle) {
+        this.ltitle = ltitle;
     }
 
-    public String getImage() {
-        return image;
+    public String getLimage() {
+        return limage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setLimage(String limage) {
+        this.limage = limage;
     }
 
-    public String getContent() {
-        return content;
+    public String getLcontent() {
+        return lcontent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setLcontent(String lcontent) {
+        this.lcontent = lcontent;
     }
 
-    public User getUser() {
-        return user;
+    public Date getLpublishDate() {
+        return lpublishDate;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setLpublishDate(Date lpublishDate) {
+        this.lpublishDate = lpublishDate;
+    }
+
+    public User getLuser() {
+        return luser;
+    }
+
+    public void setLuser(User luser) {
+        this.luser = luser;
+    }
+
+    public ArrayList getLimageList() {
+        return limageList;
+    }
+
+    public void setLimageList(ArrayList limageList) {
+        this.limageList = limageList;
     }
 }

@@ -31,4 +31,14 @@ public class BlogServiceImpl implements BlogService {
         blogDao.saveBlog(blog);
     }
 
+    @Override
+    public List<Blogs> getAllBlogs() {
+        return blogDao.getAllBlogs();
+    }
+
+    @Override
+    public List<Blogs> getBlogByTwoID(int id, int bid) {
+        return blogDao.getBlogByTwoID(id,bid);
+    }
+
 }

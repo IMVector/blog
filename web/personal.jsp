@@ -45,7 +45,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="${pageContext.request.contextPath}/blog_first.action">主页</a></li>
-                <li><a href="${pageContext.request.contextPath}/blog_time.action">时间轴</a></li>
+                <li><a href="${pageContext.request.contextPath}/time_timeLine.action">时间轴</a></li>
                 <li class="active"><a href="${pageContext.request.contextPath}/blog_personal.action">个人中心<span class="sr-only">(current)</span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">链接3 <span class="caret"></span></a>

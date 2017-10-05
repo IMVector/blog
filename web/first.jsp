@@ -79,7 +79,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath}/blog_first.action">主页<span class="sr-only">(current)</span></a></li>
-                <li><a href="${pageContext.request.contextPath}/blog_time.action">时间轴</a></li>
+                <li><a href="${pageContext.request.contextPath}/time_timeLine.action">时间轴</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog_personal.action">个人中心</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -201,10 +201,6 @@
                         </div>
                     </li>
                     </s:iterator>
-                    <%--<li class="list-group-item mylist-group-item">Dapibus ac facilisis in</li>--%>
-                    <%--<li class="list-group-item mylist-group-item">Morbi leo risus</li>--%>
-                    <%--<li class="list-group-item mylist-group-item">Porta ac consectetur ac</li>--%>
-                    <%--<li class="list-group-item mylist-group-item">Vestibulum at eros</li>--%>
                 </ul>
                 <!-- <div class="panel-footer">标题尾</div> -->
             </div>

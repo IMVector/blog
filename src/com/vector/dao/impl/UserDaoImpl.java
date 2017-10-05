@@ -38,4 +38,14 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		return null;
 	}
 
+	@Override
+	public User getById(int id) {
+		String hql="from User where id=?";
+		List<User> ulist=this.getHibernateTemplate().find(hql,id);
+		if(ulist!=null&&ulist.size()>0){
+			return ulist.get(0);
+		}
+		return null;
+	}
+
 }
