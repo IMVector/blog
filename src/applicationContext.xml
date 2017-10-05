@@ -40,6 +40,7 @@
 			<list>
 				<value>com/vector/vo/User.hbm.xml</value>
 				<value>com/vector/vo/Blogs.hbm.xml</value>
+				<value>com/vector/vo/Time.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -1,20 +1,9 @@
 package test.com.vector.action; 
 
-import com.vector.dao.BlogDao;
-import com.vector.dao.impl.BlogDaoImpl;
-import com.vector.service.BlogService;
-import com.vector.service.impl.BlogServiceImpl;
-import com.vector.vo.Blogs;
-import com.vector.vo.User;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.struts2.ServletActionContext;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 
-import java.awt.List;
 import java.util.*;
 
 /** 
@@ -101,6 +90,25 @@ public void testChecklogonName() throws Exception {
 */ 
 @Test
 public void testLogin() throws Exception {
+String imageStr="/blog/blogFace/jsp/upload/image/20171005/1507177472006024436.jpg()/blog/blogFace/jsp/upload/image/20171005/1507177472006089364.jpg()/blog/blogFace/jsp/upload/image/20171005/1507177472087064757.png()/blog/blogFace/jsp/upload/image/20171005/1507177472006022894.png()/blog/blogFace/jsp/upload/image/20171005/1507177472341088039.jpg()/blog/blogFace/jsp/upload/image/20171005/1507177472356057554.png()";
+//    String imageStr="";
+    ArrayList outList =new ArrayList();
+    String[] temp = imageStr.split("\\(\\)");
+    ArrayList list=new ArrayList();
+    for (String str : temp) {
+        list.add(str);
+    }
+    outList.add(list);
+    ArrayList list1=new ArrayList();
+    for (String str : temp) {
+        list1.add(str);
+    }
+    outList.add(list1);
+    System.out.println(outList.size());
+    System.out.println(outList.get(0));
+    ArrayList a=(ArrayList)outList.get(0);
+    System.out.println(a.get(0));
+
 
 } 
 

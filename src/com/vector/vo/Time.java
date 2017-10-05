@@ -1,11 +1,32 @@
 package com.vector.vo;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Time {
     private Integer tid;
     private String title;
     private String image;
     private String content;
+    private Date publishDate;
     private User user;
+    private ArrayList imageList=new ArrayList();
+
+    public ArrayList getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(ArrayList imageList) {
+        this.imageList = imageList;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
 
     public Integer getTid() {
         return tid;

@@ -1,4 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%--
   Created by IntelliJ IDEA.
   User: 25235
@@ -12,11 +14,11 @@
 
 <head>
     <title>我的时间轴</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="blogFace/assets/css/main.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="blogFace/assets/css/main.css"/>
     <noscript>
-        <link rel="stylesheet" href="blogFace/assets/css/noscript.css" />
+        <link rel="stylesheet" href="blogFace/assets/css/noscript.css"/>
     </noscript>
     <!-- 顺序不能变 -->
     <script src="${pageContext.request.contextPath}/blogFace/assets/js/jquery1.12.4.min.js"></script>
@@ -26,14 +28,17 @@
     <!-- 时间轴特殊 -->
     <link href="${pageContext.request.contextPath}/blogFace/assets/css/timeline.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/blogFace/assets/js/modernizr.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/blogFace/assets/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/blogFace/assets/js/jquery-1.8.3.min.js"></script>
     <!--ueditor必须-->
-    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/blogFace/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="${pageContext.request.contextPath}/blogFace/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/blogFace/ueditor.all.min.js">
     </script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/blogFace/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="${pageContext.request.contextPath}/blogFace/lang/zh-cn/zh-cn.js"></script>
 
 
 </head>
@@ -43,7 +48,8 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
                     aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -57,10 +63,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="${pageContext.request.contextPath}/blog_first.action">主页 </a></li>
-                <li class="active"><a href="${pageContext.request.contextPath}/blog_time.action">时间轴 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/blog_time.action">时间轴 <span
+                        class="sr-only">(current)</span></a></li>
                 <li><a href="${pageContext.request.contextPath}/blog_personal.action">个人中心</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">链接3 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">链接3 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">子链接</a></li>
                         <li role="separator" class="divider"></li>
@@ -75,8 +83,8 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">  <s:property value="#session.user.nickName"></s:property></a></li>
-                <li class="mynav"><a><img src="<s:property value="#session.user.headImage"/>" alt="" /></a></li>
+                <li><a href="#"> <s:property value="#session.user.nickName"></s:property></a></li>
+                <li class="mynav"><a><img src="<s:property value="#session.user.headImage"/>" alt=""/></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -87,6 +95,7 @@
 
 <!-- body主要内容显示区 -->
 <div class="container" style="margin-top:-10px;">
+
     <section id="cd-timeline" class="cd-container">
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-picture">
@@ -100,28 +109,13 @@
                 <%--<a href="#" class="cd-read-more">阅读更多</a>--%>
                 <%--<span class="cd-date">Jan 14</span>--%>
                 <h1>新建足迹</h1>
-                <textarea style="height:100px;"></textarea>
-                   <ul></ul>
-                    <button type="button" id="j_upload_img_btn">图片上传</button>
-                    <button >发送</button>
-                    <ul></ul>
-                    <div class="row">
-                        <%--<s:iterator value="timeImage" var="">--%>
-                            <div class="col-xs-6 col-md-4">
-                                <a href="#" class="thumbnail">
-                                    <img src="<s:property value="#session.user.headImage"/>" alt="<s:property value="#session.user.headImage"/>">
-                                </a>
-                            </div>
-                            <ul id="upload_img_wrap"></ul>
-                            你是什么人，坏人。大坏人哼
-                            你是什么人，坏人。大坏人哼
-                            你是什么人，坏人。大坏人哼
-                            你是什么人，坏人。大坏人哼
-                            你是什么人，坏人。大坏人哼
-
-                        <%--</s:iterator>--%>
-                    </div>
-
+                <textarea id="content" style="height:100px;"></textarea>
+                <ul></ul>
+                <button type="button" id="j_upload_img_btn">图片上传</button>
+                <button onclick="formSubmit()">发送</button>
+                <ul></ul>
+                <div id="upload_img_wrap" class="row">
+                </div>
             </div>
             <!-- cd-timeline-content -->
         </div>
@@ -132,23 +126,17 @@
                 <img src="blogFace/images/cd-icon-movie.svg" alt="Movie">
             </div>
             <!-- cd-timeline-img -->
-
             <div class="cd-timeline-content bounce-in">
                 <h2>标题</h2>
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
                         <a href="#" class="thumbnail">
-                            <img src="<s:property value="#session.user.headImage"/>" alt="<s:property value="#session.user.headImage"/>">
+                            <img src="<s:property value="#session.user.headImage"/>"
+                                 alt="<s:property value="#session.user.headImage"/>">
                         </a>
                     </div>
                 </div>
                 <p>内容
-                    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
                 </p>
                 <%--<a href="#" class="cd-read-more">阅读更多</a>--%>
                 <span class="cd-date">Jan 18</span>
@@ -156,7 +144,7 @@
             <!-- cd-timeline-content -->
         </div>
         <!-- cd-timeline-block -->
-
+        <c:forEach items="${mytimeLine}" var="currentTimeLine" varStatus="status">
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-picture bounce-in">
                 <img src="blogFace/images/cd-icon-picture.svg" alt="Picture">
@@ -165,14 +153,25 @@
 
             <div class="cd-timeline-content bounce-in">
                 <h2>标题</h2>
+                <div class="row">
+                    <c:forEach items="${currentTimeLine.imageList}" var="image">
+                    <div class="col-xs-6 col-md-4">
+                        <a href="#" class="thumbnail">
+                            <img src="${image}"
+                                 alt="图片不见了">
+                        </a>
+                    </div>
+                    </c:forEach>
+                </div>
                 <p>内容</p>
+                ${currentTimeLine.content}
                 <a href="#" class="cd-read-more">阅读更多</a>
                 <span class="cd-date">Jan 24</span>
             </div>
             <!-- cd-timeline-content -->
         </div>
         <!-- cd-timeline-block -->
-
+        </c:forEach>
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-location bounce-in">
                 <img src="blogFace/images/cd-icon-location.svg" alt="Location">
@@ -235,7 +234,11 @@
         <!-- cd-timeline-block -->
     </section>
     <!-- cd-timeline -->
-
+    <form id="myform" action="${pageContext.request.contextPath}/time_saveTimeLine.action" method="get"
+          style="display: none">
+        <textarea id="formContent" name="content"></textarea>
+        <textarea id="formImage" name="image"></textarea>
+    </form>
 </div>
 <!-- container结束 -->
 
@@ -268,17 +271,17 @@
 
 <!-- 使用ue -->
 <script type="text/javascript">
-
+    var myTimeImage = "";
     // 实例化编辑器，这里注意配置项隐藏编辑器并禁用默认的基础功能。
     var uploadEditor = UE.getEditor("uploadEditor", {
         isShow: false,
         focus: false,
         enableAutoSave: false,
         autoSyncData: false,
-        autoFloatEnabled:false,
+        autoFloatEnabled: false,
         wordCount: false,
         sourceEditor: null,
-        scaleEnabled:true,
+        scaleEnabled: true,
         toolbars: [["insertimage"]]
     });
 
@@ -299,29 +302,56 @@
     // 多图上传动作
     function _beforeInsertImage(t, result) {
         var imageHtml = '';
-        for(var i in result){
-            imageHtml += '<li><img src="'+result[i].src+'" alt="'+result[i].alt+'" height="150"></li>';
+        for (var i in result) {
+//            var image=new Image();
+//            image.src=result[i].src;
+//            imageHtml += '<li><img src="'+result[i].src+'" alt="'+result[i].alt+'" height="150"></li>';
+            imageHtml += "<div class='col-xs-6 col-md-4'> <a href='#' class='thumbnail'> <img style='max-height: 145px;max-width: 110px;' src=" + result[i].src + " alt=" + result[i].alt + "/> </a></div>";
+            myTimeImage += result[i].src;
+            myTimeImage += "()";
+            <!--110*150-->
+            <%--<div class="col-xs-6 col-md-4">--%>
+            <%--<a href="#" class="thumbnail">--%>
+            <%--<img src="<s:property value="#session.user.headImage"/>" alt="<s:property value="#session.user.headImage"/>">--%>
+            <%--</a>--%>
+            <%--</div>--%>
+            <%--<ul id="upload_img_wrap"></ul>--%>
         }
-        document.getElementById('upload_img_wrap').innerHTML = imageHtml;
+        document.getElementById('upload_img_wrap').innerHTML += imageHtml;
+        console.log(myTimeImage);
     }
+
+    function formSubmit() {
+        var contetn = $("#content").val();
+        $("#formContent").val(contetn);
+        $("#formImage").val(myTimeImage);
+
+        alert($("#formContent").val());
+        alert($("#formImage").val());
+        $("#myform").submit();
+    }
+
 
 </script>
 <!--图片预加载-->
 <script>
     $(document).ready(function () {
-            $("img").each(function() {
-                var image=new Image();
-                image.src=$(this).attr("src");
-                console.log(image.src);
-            });
+        $("img").each(function () {
+            var image = new Image();
+            image.src = $(this).attr("src");
+//                console.log(image.src);
+        });
 
-        })
+    })
 </script>
 <!-- Scripts -->
-<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+<!--[if lte IE 8]>
+<script src="assets/js/respond.min.js"></script><![endif]-->
 <script>
     if ('addEventListener' in window) {
-        window.addEventListener('load', function () { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+        window.addEventListener('load', function () {
+            document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+        });
         document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
     }
 </script>

@@ -25,7 +25,7 @@ import org.json.JSONObject;
 import javax.xml.ws.Response;
 
 public class UserAction extends ActionSupport implements ModelDriven {
-    private Blogs blog=new Blogs();
+//    private Blogs blog=new Blogs();
     private User user = new User();
     private UserService userService;
     private BlogService blogService;

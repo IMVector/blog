@@ -21,7 +21,9 @@
 		<action name="Tblog_*" class="blogAction" method="{1}">
 			<result name="saveBlog">/content.jsp</result>
 		</action>
-
+		<action name="time_*" class="timeAction" method="{1}">
+			<result name="saveTimeLine">/time.jsp</result>
+		</action>
 	</package>
 
 </struts>
