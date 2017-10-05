@@ -78,24 +78,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="${pageContext.request.contextPath}/blog_first.action">主页<span class="sr-only">(current)</span></a></li>
+                <li><a href="${pageContext.request.contextPath}/public_getAllBlogs.action">主页</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/blog_first.action">我的主页<span class="sr-only">(current)</span></a></li>
                 <li><a href="${pageContext.request.contextPath}/time_timeLine.action">时间轴</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog_personal.action">个人中心</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">链接3 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">子链接</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">子链接1</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">子链接2</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">子链接3</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">子链接4</a></li>
-                    </ul>
-                </li>
+                <%--<li class="dropdown">--%>
+                    <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">链接3 <span class="caret"></span></a>--%>
+                    <%--<ul class="dropdown-menu">--%>
+                        <%--<li><a href="#">子链接</a></li>--%>
+                        <%--<li role="separator" class="divider"></li>--%>
+                        <%--<li><a href="#">子链接1</a></li>--%>
+                        <%--<li role="separator" class="divider"></li>--%>
+                        <%--<li><a href="#">子链接2</a></li>--%>
+                        <%--<li role="separator" class="divider"></li>--%>
+                        <%--<li><a href="#">子链接3</a></li>--%>
+                        <%--<li role="separator" class="divider"></li>--%>
+                        <%--<li><a href="#">子链接4</a></li>--%>
+                    <%--</ul>--%>
+                <%--</li>--%>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><s:property value="#session.user.nickName"></s:property></a></li>

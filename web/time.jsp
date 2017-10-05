@@ -55,25 +55,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="${pageContext.request.contextPath}/blog_first.action">主页 </a></li>
+                <li><a href="${pageContext.request.contextPath}/public_getAllBlogs.action">主页 </a></li>
+                <li><a href="${pageContext.request.contextPath}/blog_first.action">我的主页 </a></li>
                 <li class="active"><a href="${pageContext.request.contextPath}/time_timeLine.action">时间轴 <span
                         class="sr-only">(current)</span></a></li>
                 <li><a href="${pageContext.request.contextPath}/blog_personal.action">个人中心</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">链接3 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">子链接</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">子链接1</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">子链接2</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">子链接3</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">子链接4</a></li>
-                    </ul>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"> <s:property value="#session.user.nickName"></s:property></a></li>
@@ -97,10 +83,6 @@
             <!-- cd-timeline-img -->
 
             <div class="cd-timeline-content">
-                <%--<h2>标题</h2>--%>
-                <%--<p>内容</p>--%>
-                <%--<a href="#" class="cd-read-more">阅读更多</a>--%>
-                <%--<span class="cd-date">Jan 14</span>--%>
                 <h1>新建足迹</h1>
                 <textarea id="content" style="height:100px;"></textarea>
                 <ul></ul>
@@ -114,28 +96,6 @@
         </div>
         <!-- cd-timeline-block -->
 
-        <%--<div class="cd-timeline-block">--%>
-            <%--<div class="cd-timeline-img cd-movie bounce-in">--%>
-                <%--<img src="blogFace/images/cd-icon-movie.svg" alt="Movie">--%>
-            <%--</div>--%>
-            <!-- cd-timeline-img -->
-            <%--<div class="cd-timeline-content bounce-in">--%>
-                <%--<h2>标题</h2>--%>
-                <%--<div class="row">--%>
-                    <%--<div class="col-xs-6 col-md-4">--%>
-                        <%--<a href="#" class="thumbnail">--%>
-                            <%--<img src="<s:property value="#session.user.headImage"/>"--%>
-                                 <%--alt="<s:property value="#session.user.headImage"/>">--%>
-                        <%--</a>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<p>内容--%>
-                <%--</p>--%>
-                <%--&lt;%&ndash;<a href="#" class="cd-read-more">阅读更多</a>&ndash;%&gt;--%>
-                <%--<span class="cd-date">Jan 18</span>--%>
-            <%--</div>--%>
-            <%--<!-- cd-timeline-content -->--%>
-        <%--</div>--%>
         <!-- cd-timeline-block -->
         <c:forEach items="${timeLine}" var="currentTimeLine">
         <div class="cd-timeline-block">
@@ -165,65 +125,7 @@
         </div>
         <!-- cd-timeline-block -->
         </c:forEach>
-        <%--<div class="cd-timeline-block">--%>
-            <%--<div class="cd-timeline-img cd-location bounce-in">--%>
-                <%--<img src="blogFace/images/cd-icon-location.svg" alt="Location">--%>
-            <%--</div>--%>
-            <%--<!-- cd-timeline-img -->--%>
 
-            <%--<div class="cd-timeline-content bounce-in">--%>
-                <%--<h2>标题</h2>--%>
-                <%--<p>内容</p>--%>
-                <%--<a href="#" class="cd-read-more">阅读更多</a>--%>
-                <%--<span class="cd-date">Feb 14</span>--%>
-            <%--</div>--%>
-            <%--<!-- cd-timeline-content -->--%>
-        <%--</div>--%>
-        <!-- cd-timeline-block -->
-
-        <%--<div class="cd-timeline-block">--%>
-            <%--<div class="cd-timeline-img cd-location bounce-in">--%>
-                <%--<img src="blogFace/images/cd-icon-location.svg" alt="Location">--%>
-            <%--</div>--%>
-            <%--<!-- cd-timeline-img -->--%>
-
-            <%--<div class="cd-timeline-content bounce-in">--%>
-                <%--<h2>标题</h2>--%>
-                <%--<p>内容</p>--%>
-                <%--<a href="#" class="cd-read-more">阅读更多</a>--%>
-                <%--<span class="cd-date">Feb 18</span>--%>
-            <%--</div>--%>
-            <%--<!-- cd-timeline-content -->--%>
-        <%--</div>--%>
-        <!-- cd-timeline-block -->
-
-        <%--<div class="cd-timeline-block">--%>
-            <%--<div class="cd-timeline-img cd-movie bounce-in">--%>
-                <%--<img src="blogFace/images/cd-icon-movie.svg" alt="Movie">--%>
-            <%--</div>--%>
-            <%--<!-- cd-timeline-img -->--%>
-
-            <%--<div class="cd-timeline-content bounce-in">--%>
-                <%--<h2>标题</h2>--%>
-                <%--<p>内容</p>--%>
-                <%--<a href="#" class="cd-read-more">阅读更多</a>--%>
-                <%--<span class="cd-date">Feb 26</span>--%>
-            <%--</div>--%>
-            <%--<!-- cd-timeline-content -->--%>
-        <%--</div>--%>
-        <!-- cd-timeline-block -->
-        <%--<div class="cd-timeline-block">--%>
-            <%--<div class="cd-timeline-img cd-location bounce-in">--%>
-                <%--<img src="blogFace/images/cd-icon-location.svg" alt="Location">--%>
-            <%--</div>--%>
-            <%--<!-- cd-timeline-img -->--%>
-
-            <%--<div class="cd-timeline-content bounce-in">--%>
-
-
-            <%--</div>--%>
-            <%--<!-- cd-timeline-content -->--%>
-        <%--</div>--%>
         <!-- cd-timeline-block -->
     </section>
     <!-- cd-timeline -->
@@ -296,18 +198,11 @@
     function _beforeInsertImage(t, result) {
         var imageHtml = '';
         for (var i in result) {
-//            var image=new Image();
-//            image.src=result[i].src;
 //            imageHtml += '<li><img src="'+result[i].src+'" alt="'+result[i].alt+'" height="150"></li>';
             imageHtml += "<div class='col-xs-6 col-md-4'> <a href='#' class='thumbnail'> <img style='max-height: 145px;max-width: 110px;' src=" + result[i].src + " alt=" + result[i].alt + "/> </a></div>";
             myTimeImage += result[i].src;
             myTimeImage += "()";
             <!--110*150-->
-            <%--<div class="col-xs-6 col-md-4">--%>
-            <%--<a href="#" class="thumbnail">--%>
-            <%--<img src="<s:property value="#session.user.headImage"/>" alt="<s:property value="#session.user.headImage"/>">--%>
-            <%--</a>--%>
-            <%--</div>--%>
             <%--<ul id="upload_img_wrap"></ul>--%>
         }
         document.getElementById('upload_img_wrap').innerHTML += imageHtml;
@@ -318,9 +213,6 @@
         var contetn = $("#content").val();
         $("#formContent").val(contetn);
         $("#formImage").val(myTimeImage);
-
-//        alert($("#formContent").val());
-//        alert($("#formImage").val());
         $("#myform").submit();
     }
 

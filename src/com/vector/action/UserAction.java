@@ -10,6 +10,7 @@ import java.util.List;
 import com.vector.service.BlogService;
 import com.vector.utils.JsonDateDeal;
 import com.vector.utils.JsonHelper;
+import com.vector.utils.MD5Utils;
 import com.vector.vo.Blogs;
 import com.vector.vo.User;
 import net.sf.json.JSONArray;
@@ -70,7 +71,7 @@ public class UserAction extends ActionSupport implements ModelDriven {
      * @return
      * @throws IOException
      */
-    public String checklogonName() throws IOException {
+    public String checkEmail() throws IOException {
         User customer = userService.findByLogonName(user.getEmail());
         ServletActionContext.getResponse().setContentType(
                 "text/html;charset=utf-8");
@@ -81,7 +82,17 @@ public class UserAction extends ActionSupport implements ModelDriven {
         }
         return null;
     }
-
+    public String checklogonName() throws IOException {
+        User customer = userService.findByLogonName(user.getNickName());
+        ServletActionContext.getResponse().setContentType(
+                "text/html;charset=utf-8");
+        if (customer == null) {
+            ServletActionContext.getResponse().getWriter().println(1);
+        } else {
+            ServletActionContext.getResponse().getWriter().println(2);
+        }
+        return null;
+    }
     @InputConfig(resultName = "loginInput")
     public String login() {
         User u = userService.login(user);
@@ -165,6 +176,37 @@ public class UserAction extends ActionSupport implements ModelDriven {
         ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
         ActionContext.getContext().getValueStack().set("currentBlog",currentblog);
         return "goToContent";
+    }
+
+    public String updateUser(){
+        User u = (User) ActionContext.getContext().getSession().get("user");
+        String md5= MD5Utils.md5(user.getPassword());
+        user.setPassword(md5);
+        user.setId(u.getId());
+        if(user.getNickName()==null||user.getNickName()==""){
+            user.setNickName(u.getNickName());
+        }
+        if(user.getPassword()==null||user.getPassword()==""){
+            user.setPassword(u.getPassword());
+        }
+        if(user.getEmail()==null||user.getEmail()==""){
+            user.setEmail(u.getEmail());
+        }
+        if(user.getDescription()==null||user.getDescription()==""){
+            user.setDescription(u.getDescription());
+        }
+        if(user.getGender()==null||user.getGender()==""){
+            user.setGender(u.getGender());
+        }
+        if(user.getHeadImage()==null||user.getHeadImage()==""){
+            user.setHeadImage(u.getHeadImage());
+        }
+        System.out.println(user.getId());
+        System.out.println(user.getNickName());
+        System.out.println(user.getHeadImage());
+        System.out.println(user.getDescription());
+        userService.updateUser(user);
+        return "update";
     }
 //        public void setBlog(Blogs blog){
 //        this.blog=blog;

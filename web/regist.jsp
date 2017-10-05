@@ -50,6 +50,40 @@
                                     });
                         }
                     });
+            $("#email")
+                .blur(
+                    function () {
+                        //获取用户名的值
+                        var email = $("#email").val();
+
+                        if (email.length > 0) {
+                            $
+                                .post(
+                                    "${pageContext.request.contextPath}/blog_checkEmail.action",
+                                    {
+                                        'email': email
+                                    },
+                                    function (data) {
+                                        //接收后台传过来的值，进行判断
+                                        if (1 == data) {
+                                            $("#span2")
+                                                .html(
+                                                    "<font color='green'>邮箱可以使用！</font>");
+                                            $("#registBtn").show();
+                                        } else if (2 == data) {
+                                            $("#span2")
+                                                .html(
+                                                    "<font color='red'>邮箱已经被注册！</font>");
+                                            $("#registBtn").hide();
+                                        }
+
+                                    });
+                        }
+                    });
+
+
+
+
         });
         function submit() {
             document.getElementById("registForm").submit();
@@ -73,13 +107,14 @@
             </div>
             <div class="field">
                 <input type="email" name="email" id="email" placeholder="邮箱" />
+                <span id="span2"></span>
             </div>
             <div class="field">
                 <input type="password" name="password" id="password" placeholder="密码" />
             </div>
             <div class="field">
                 <div class="select-wrapper">
-                    <select name="department" id="department">
+                    <select name="gender" id="gender">
                         <optgroup label="性别"></optgroup>>
                         <option value="男">男</option>
                         <option value="女">女</option>
@@ -87,7 +122,7 @@
                 </div>
             </div>
             <div class="field">
-                <textarea name="message" id="message" placeholder="介绍下自己吧" rows="4"></textarea>
+                <textarea name="description" id="description" placeholder="介绍下自己吧" rows="4"></textarea>
             </div>
 
             <ul class="actions">

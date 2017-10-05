@@ -7,4 +7,6 @@ public interface UserService {
 	public User login(User user);
 	public User findByLogonName(String email);
 	public User getByid(int id);
+
+	public void updateUser(User user);
 }

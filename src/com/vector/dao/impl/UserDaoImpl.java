@@ -48,4 +48,9 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		return null;
 	}
 
+	@Override
+	public void updateUser(User user) {
+		this.getHibernateTemplate().update(user);
+	}
+
 }
