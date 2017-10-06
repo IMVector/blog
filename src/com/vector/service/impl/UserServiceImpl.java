@@ -34,8 +34,12 @@ public class UserServiceImpl implements UserService {
 	 * 查询数据库中是否存在要查询的客户
 	 */
 	@Override
-	public User findByLogonName(String email) {
-		return userDao.findByLogonName(email);
+	public User findByLogonName(String nickName) {
+		return userDao.findByLogonName(nickName);
+	}
+	@Override
+	public User findByEmail(String email){
+		return userDao.findByEmail(email);
 	}
 
 	@Override

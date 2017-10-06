@@ -51,6 +51,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">  <s:property value="#session.user.nickName"></s:property></a></li>
+                <li><a href="${pageContext.request.contextPath}/blog_exit.action">退出登录</a><li>
                 <li class="mynav"><a><img src="<s:property value="#session.user.headImage"/>" alt="" /></a></li>
             </ul>
         </div>

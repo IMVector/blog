@@ -54,6 +54,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"> <s:property value="#session.user.nickName"></s:property></a></li>
+                <li><a href="${pageContext.request.contextPath}/blog_exit.action">退出登录</a><li>
                 <li class="mynav"><a><img src="<s:property value="#session.user.headImage"/>" alt=""/></a></li>
             </ul>
         </div>
@@ -74,7 +75,7 @@
             <div class="thumbnail">
                 <img src="${host.headImage}" alt="...">
                 <div class="caption">
-                    <h3> ${host.nickName}</h3>
+                    <h3>${host.nickName}</h3>
                     <p><c:choose>
                         <c:when test="${empty host.description}">
                             介绍下自己吧
@@ -84,6 +85,7 @@
                         </c:otherwise>
                     </c:choose>
                     </p>
+                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/time_publicTimeLine.action?id=${host.id}">查看ta的时间轴</a>
                 </div>
             </div>
             <!--博客头像个人介绍结束-->

@@ -5,11 +5,11 @@
 
 <head>
     <title>我的小窝</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/blogFace/assets/css/main.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/blogFace/assets/css/main.css"/>
     <noscript>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/blogFace/assets/css/noscript.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/blogFace/assets/css/noscript.css"/>
     </noscript>
     <!-- 顺序不能变 -->
     <script src="${pageContext.request.contextPath}/blogFace/assets/js/jquery1.12.4.min.js"></script>
@@ -34,7 +34,8 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
                     aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -50,11 +51,13 @@
                 <li><a href="${pageContext.request.contextPath}/public_getAllBlogs.action">主页</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog_first.action">我的主页</a></li>
                 <li><a href="${pageContext.request.contextPath}/time_timeLine.action">时间轴</a></li>
-                <li class="active"><a href="${pageContext.request.contextPath}/blog_personal.action">个人中心<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/blog_personal.action">个人中心<span
+                        class="sr-only">(current)</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">  <s:property value="#session.user.nickName"></s:property></a></li>
-                <li class="mynav"><a><img src="<s:property value="#session.user.headImage"/>" alt="" /></a></li>
+                <li><a href="#"> <s:property value="#session.user.nickName"></s:property></a></li>
+                <li><a href="${pageContext.request.contextPath}/blog_exit.action">退出登录</a><li>
+                <li class="mynav"><a><img src="<s:property value="#session.user.headImage"/>" alt=""/></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -75,7 +78,7 @@
             <div class="thumbnail">
                 <img src="<s:property value="#session.user.headImage"/>" alt="...">
                 <div class="caption">
-                    <h3>  <s:property value="#session.user.nickName"></s:property></h3>
+                    <h3><s:property value="#session.user.nickName"></s:property></h3>
                     <p><s:if test="#session.user.description!=null">
                         <s:property value="#session.user.description"></s:property>
                     </s:if><s:else>
@@ -90,13 +93,16 @@
                 <div class="panel-body">
                     <ul class="list-group">
                         <s:iterator value="blog" var="blog1">
-                            <li class="list-group-item"><a href="${pageContext.request.contextPath}/blog_getBlogByID.action?bid=<s:property value='#blog1.bid'/>"><s:property value="#blog1.title"></s:property></a></li>
+                            <li class="list-group-item"><a
+                                    href="${pageContext.request.contextPath}/blog_getBlogByID.action?bid=<s:property value='#blog1.bid'/>"><s:property
+                                    value="#blog1.title"></s:property></a></li>
                         </s:iterator>
 
                         <li class="list-group-item">
                             <nav aria-label="Page navigation">
                                 <ul class="pagination pagination-sm">
-                                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                                    </li>
                                     <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
                                     <li><a href="#">2</a></li>
                                     <li><a href="#">3</a></li>
@@ -154,15 +160,17 @@
                                     <br><br>
                                     <div class="row">
                                         <div class="col-xs-6 col-md-5">
-                                            <a id="imageHolder" href="#" class="thumbnail">
-                                                <img src="${sessionScope.user.headImage}" style="max-height: 170px;max-width: 140px;" alt="图片被偷跑了">
+                                            <a href="#" class="thumbnail" id="imageHolder" >
+                                                <img src="${sessionScope.user.headImage}"
+                                                     style="max-height: 170px;max-width: 130px;" alt="图片被偷跑了">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
 
                             </li>
-                            <li class="list-group-item"> <input type="button" class="button col-md-offset-8" value="修改信息"></li>
+                            <li class="list-group-item"><input type="button" class="button col-md-offset-8"
+                                                               value="修改信息"></li>
                         </ul>
                     </div>
                     <div class="col-md-6">
@@ -173,35 +181,40 @@
 
                                     <div class="form-group">
                                         <label for="nackName">用户名</label>
-                                        <input type="text" class="form-control" id="nackName" name="nickName" placeholder="用户名">
+                                        <input type="text" class="form-control" id="nackName" name="nickName"
+                                               placeholder="用户名">
                                     </div>
-                                <div class="form-group">
-                                    <label for="nackName">邮箱</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="邮箱">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">密码</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="密码">
-                                </div>
-                                <div class="form-group">
-                                <label for="gender">性别</label>
-                                    <div class="select-wrapper">
-                                        <select name="gender" id="gender">
-                                            <option value="男">男</option>
-                                            <option value="女">女</option>
-                                        </select>
+                                    <%--<div class="form-group">--%>
+                                    <%--<label for="nackName">邮箱</label>--%>
+                                    <%--<input type="email" class="form-control" id="email" name="email" placeholder="邮箱">--%>
+                                    <%--</div>--%>
+                                    <div class="form-group">
+                                        <label for="password">密码</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                               placeholder="密码">
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">介绍</label>
-                                    <input type="text" id="description" name="description">
-                                </div>
+                                    <div class="form-group">
+                                        <label for="gender">性别</label>
+                                        <div class="select-wrapper">
+                                            <select name="gender" id="gender">
+                                                <option value="男">男</option>
+                                                <option value="女">女</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">介绍</label>
+                                        <input type="text" id="description" name="description">
+                                    </div>
                                     <input type="text" id="headImage" name="headImage" style="display: none">
                                     <br>
-                                    <button type="button" id="uploadHeadImage">图片上传</button>
+                                    <br>
+                                    <br>
+                                    <br>
+                                <button type="button" id="uploadHeadImage">图片上传</button>
                                 <button type="submit" class="button">确认提交</button>
-                                </form>
-                             </li>
+                            </form>
+                            </li>
 
                         </ul>
                     </div>
@@ -217,7 +230,11 @@
     <!-- row结束 -->
 </div>
 <!-- container结束 -->
-
+<script>
+    $(document).ready(function () {
+        $("#gender").val("${sessionScope.user.gender}");
+    })
+</script>
 <!-- 加载编辑器的容器 -->
 <textarea id="uploadEditor" style="display: none;"></textarea>
 
@@ -257,13 +274,12 @@
         for (var i in result) {
             myTimeImage = result[i].src;
             $("#headImage").val(result[i].src);
-            imageHtml=" <img src="+result[i].src+" style=\"max-height: 170px;max-width: 140px;\" alt=\"图片被偷跑了\">";
+            imageHtml = " <img src=" + result[i].src + " style=\"max-height: 170px;max-width: 140px;\" alt=\"图片被偷跑了\">";
 
         }
         document.getElementById('imageHolder').innerHTML = imageHtml;
         console.log(myTimeImage);
     }
-
 
 
 </script>
@@ -273,21 +289,23 @@
 </button>
 <script>
     $(document).ready(function () {
-            $("img").each(function() {
-                var image=new Image();
-                image.src=$(this).attr("src");
+            $("img").each(function () {
+                var image = new Image();
+                image.src = $(this).attr("src");
                 console.log(image.src);
             });
 
         }
-
     )
 </script>
 <!-- Scripts -->
-<!--[if lte IE 8]><script src="${pageContext.request.contextPath}/blogFace/assets/js/respond.min.js"></script><![endif]-->
+<!--[if lte IE 8]>
+<script src="${pageContext.request.contextPath}/blogFace/assets/js/respond.min.js"></script><![endif]-->
 <script>
     if ('addEventListener' in window) {
-        window.addEventListener('load', function () { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+        window.addEventListener('load', function () {
+            document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+        });
         document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
     }
 </script>

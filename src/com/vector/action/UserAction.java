@@ -72,7 +72,7 @@ public class UserAction extends ActionSupport implements ModelDriven {
      * @throws IOException
      */
     public String checkEmail() throws IOException {
-        User customer = userService.findByLogonName(user.getEmail());
+        User customer = userService.findByEmail(user.getEmail());
         ServletActionContext.getResponse().setContentType(
                 "text/html;charset=utf-8");
         if (customer == null) {
@@ -93,6 +93,7 @@ public class UserAction extends ActionSupport implements ModelDriven {
         }
         return null;
     }
+
     @InputConfig(resultName = "loginInput")
     public String login() {
         User u = userService.login(user);
@@ -126,9 +127,19 @@ public class UserAction extends ActionSupport implements ModelDriven {
      */
     public String personal() throws IOException {
         getBlogs();
+        User tempuser = (User) ActionContext.getContext().getSession().get("user");
+        User customer = userService.findByEmail(tempuser.getEmail());
+        ActionContext.getContext().getSession().put("user", customer);
         return "personal";
     }
-
+    /**
+     * 退出登录     实现重新登录
+     */
+    public String exit() {
+        // 销毁session中的用户
+        ActionContext.getContext().getSession().remove("user");
+        return "exit";
+    }
     /**
      * 跳转到时间轴页面
      * @return
@@ -184,34 +195,30 @@ public class UserAction extends ActionSupport implements ModelDriven {
      */
     public String updateUser(){
         User u = (User) ActionContext.getContext().getSession().get("user");
-        String md5= MD5Utils.md5(user.getPassword());
-        user.setPassword(md5);
-        user.setId(u.getId());
-        if(user.getNickName()==null||user.getNickName()==""){
-            user.setNickName(u.getNickName());
+        User temp =userService.findByEmail(u.getEmail());
+        user.setId(temp.getId());
+        if(user.getNickName()==null||user.getNickName().trim().equals("")){
+            user.setNickName(temp.getNickName());
         }
-        if(user.getPassword()==null||user.getPassword()==""){
-            user.setPassword(u.getPassword());
+        if(user.getPassword()==null||user.getPassword().trim().equals("")){
+            user.setPassword(temp.getPassword());
+        }else{
+            String md5= MD5Utils.md5(user.getPassword());
+            user.setPassword(md5);
         }
-        if(user.getEmail()==null||user.getEmail()==""){
-            user.setEmail(u.getEmail());
+        if(user.getEmail()==null||user.getEmail().trim().equals("")){
+            user.setEmail(temp.getEmail());
         }
-        if(user.getDescription()==null||user.getDescription()==""){
-            user.setDescription(u.getDescription());
+        if(user.getDescription()==null||user.getDescription().trim().equals("")){
+            user.setDescription(temp.getDescription());
         }
-        if(user.getGender()==null||user.getGender()==""){
-            user.setGender(u.getGender());
+        if(user.getHeadImage()==null||user.getHeadImage().trim().equals("")){
+            user.setHeadImage(temp.getHeadImage());
         }
-        if(user.getHeadImage()==null||user.getHeadImage()==""){
-            user.setHeadImage(u.getHeadImage());
-        }
-        System.out.println(user.getId());
-        System.out.println(user.getNickName());
-        System.out.println(user.getHeadImage());
-        System.out.println(user.getDescription());
         userService.updateUser(user);
         return "update";
     }
+
     public String deleteBlog(){
         System.out.println("bid value is"+bid);
         blogService.deleteBlog(bid);
@@ -247,3 +254,26 @@ public class UserAction extends ActionSupport implements ModelDriven {
 //        PrintWriter out = ServletActionContext.getResponse().getWriter();
 //        out.write(jsonArray2.toString());
 //        }
+
+
+
+//        System.out.println(temp.getNickName());
+//        System.out.println(temp.getDescription());
+//        System.out.println(temp.getHeadImage());
+//        System.out.println(temp.getGender());
+//
+//        System.out.println("---------");
+//        System.out.println("id is "+user.getId());
+//        System.out.println("nickName is "+user.getNickName());
+//        System.out.println("image is "+user.getHeadImage());
+//        System.out.println("description is "+user.getDescription());
+//        System.out.println("password is"+user.getPassword());
+//        System.out.println("email is "+user.getEmail());
+//        System.out.println("gender is "+user.getGender());
+//        System.out.println("id is "+user.getId());
+//        System.out.println("nickName is "+user.getNickName());
+//        System.out.println("image is "+user.getHeadImage());
+//        System.out.println("description is "+user.getDescription());
+//        System.out.println("password is"+user.getPassword());
+//        System.out.println("email is "+user.getEmail());
+//        System.out.println("gender is "+user.getGender());

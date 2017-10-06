@@ -19,6 +19,7 @@
 			<result name="time">/time.jsp</result>
 			<result name="goToContent">/content.jsp</result>
 			<result name="deleteBlog" type="redirectAction">blog_first.action</result>
+			<result name="exit" type="redirectAction">blog_loginInput.action</result>
 		</action>
 		<action name="Tblog_*" class="blogAction" method="{1}">
 			<result name="saveBlog">/content.jsp</result>
@@ -26,10 +27,12 @@
 		<action name="time_*" class="timeAction" method="{1}">
 			<result name="saveTimeLine">/time.jsp</result>
 			<result name="timeLine">/time.jsp</result>
+			<result name="publicTimeLine">/publicTime.jsp</result>
 		</action>
 		<action name="public_*" class="publicAction" method="{1}">
 			<result name="getAllBlogs">/mainPage.jsp</result>
 			<result name="getBlogByID">/publicContent.jsp</result>
+
 		</action>
 	</package>
 

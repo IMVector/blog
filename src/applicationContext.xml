@@ -59,6 +59,7 @@
 	<bean id="publicAction" class="com.vector.action.PublicAction" scope="prototype">
 		<property name="blogService" ref="blogService"></property>
 		<property name="userService" ref="userService"></property>
+		<!--<property name="timeService" ref="timeService"></property>-->
 	</bean>
 
 	<!-- service配置 -->

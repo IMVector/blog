@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.vector.service.BlogService;
+import com.vector.service.TimeService;
 import com.vector.service.UserService;
 import com.vector.vo.Blogs;
 import com.vector.vo.User;
@@ -15,6 +16,7 @@ public class PublicAction extends ActionSupport implements ModelDriven {
     private Blogs blog=new Blogs();
     private BlogService blogService;
     private UserService userService;
+//    private TimeService timeService;
     @Override
     public Object getModel() {
         return blog;
@@ -27,6 +29,10 @@ public class PublicAction extends ActionSupport implements ModelDriven {
     public void setBlogService(BlogService blogService) {
         this.blogService = blogService;
     }
+
+//    public void setTimeService(TimeService timeService) {
+//        this.timeService = timeService;
+//    }
 
     /**
      * 查询所有blog按时间先后排序
@@ -63,6 +69,5 @@ public class PublicAction extends ActionSupport implements ModelDriven {
         }
         return "getBlogByID";
     }
-
 
 }

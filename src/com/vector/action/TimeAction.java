@@ -15,6 +15,11 @@ import java.util.List;
 public class TimeAction extends ActionSupport implements ModelDriven {
     private Time time = new Time();
     private TimeService timeService;
+    int id=0;
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public Object getModel() {
@@ -75,7 +80,10 @@ public class TimeAction extends ActionSupport implements ModelDriven {
         }
         return list;
     }
-
+    public String publicTimeLine(){
+        getTime(id);
+        return "publicTimeLine";
+    }
     /**
      * 查询某个用户的所有的timeLine
      *

@@ -6,7 +6,7 @@
 <html>
 
 <head>
-    <title>我的时间轴</title>
+    <title>ta的时间轴</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="blogFace/assets/css/main.css"/>
