@@ -119,36 +119,40 @@ String imageStr="/blog/blogFace/jsp/upload/image/20171005/1507177472006024436.jp
 */ 
 @Test
 public void testGetBlogs() throws Exception {
-    String str="&nbsp;&nbsp;&nbsp;&nbsp;\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;(e)&nbsp;{\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(.getEditor(&#39;editor&#39;).());\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...(e)\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\n" +
-            "\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;(e)&nbsp;{\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getEditor(&#39;editor&#39;).();\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...(e)\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\n" +
-            "\n" +
-            "\n" +
-            "&lt;/body&gt;\n" +
-            "\n" +
-            "&lt;/html&gt;</pre><p><br/></p><p>|||||[{id=1}{title=231}{publishDate=2017/10/4/16/48}{image=null}{titleImage=null}]|||||</p>";
+//    String str="&nbsp;&nbsp;&nbsp;&nbsp;\n" +
+//            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;(e)&nbsp;{\n" +
+//            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(.getEditor(&#39;editor&#39;).());\n" +
+//            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...(e)\n" +
+//            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\n" +
+//            "\n" +
+//            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;(e)&nbsp;{\n" +
+//            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getEditor(&#39;editor&#39;).();\n" +
+//            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...(e)\n" +
+//            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\n" +
+//            "\n" +
+//            "\n" +
+//            "&lt;/body&gt;\n" +
+//            "\n" +
+//            "&lt;/html&gt;</pre><p><br/></p><p>|||||[{id=1}{title=231}{publishDate=2017/10/4/16/48}{image=null}{titleImage=null}]|||||</p>";
+   String str="<p><img src=\"/blog/blogFace/jsp/upload/image/20171006/1507268843135059895.png\" title=\"1507268843135059895.png\"/></p><p><img src=\"/blog/blogFace/jsp/upload/image/20171006/1507268843098030498.png\" title=\"1507268843098030498.png\"/></p><p><br/></p><p>|||||[{title=样本区分}{image=/blog/blogFace/jsp/upload/image/20171006/1507268843135059895.png()/blog/blogFace/jsp/upload/image/20171006/1507268843098030498.png()}]|||||</p>";
+
+
     System.out.println(str.indexOf("|||||["));
     System.out.println(str.indexOf("]|||||"));
     int start=str.indexOf("|||||[")+6;
     int end=str.indexOf("]|||||");
+    String newContent=str.substring(0,start-6);
     System.out.println(str.substring(start,end));
     String newStr=str.substring(start,end);
     String []strArray=newStr.split("}");
-    String []finalStr=new String[5];
+    String []finalStr=new String[2];
     for(int i=0;i<strArray.length;i++){
         String []temp=strArray[i].split("=");
         finalStr[i]=temp[1];
         System.out.println(finalStr[i]);
     }
-    String newContent=str.substring(0,start);
-    System.out.println(newContent);
+    String[] titleImage=finalStr[1].split("\\(\\)");
+    System.out.println(titleImage[0]);
 //    System.out.println(strArray);
 //    String newJson = StringEscapeUtils.unescapeHtml4(str.substring(start,end));
 //    System.out.println(newJson);

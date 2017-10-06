@@ -57,4 +57,10 @@ public class BlogDaoImpl extends HibernateDaoSupport implements BlogDao {
         System.out.println("错误");
         return null;
     }
+
+    @Override
+    public void deleteBlog(int bid) {
+        Blogs blog=getBlogByID(bid);
+        this.getHibernateTemplate().delete(blog);
+    }
 }

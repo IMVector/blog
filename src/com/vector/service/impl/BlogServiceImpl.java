@@ -41,4 +41,9 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getBlogByTwoID(id,bid);
     }
 
+    @Override
+    public void deleteBlog(int bid) {
+        blogDao.deleteBlog(bid);
+    }
+
 }

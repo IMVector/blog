@@ -15,4 +15,6 @@ public interface BlogService {
     public List<Blogs> getAllBlogs();
 
     public List<Blogs> getBlogByTwoID(int id, int bid);
+
+    public void deleteBlog(int bid);
 }

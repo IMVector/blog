@@ -19,8 +19,10 @@
     <script src="${pageContext.request.contextPath}/blogFace/assets/js/bootstrap3.3.7.min.js"></script>
 
 
-    <style>
-
+        <style>
+        .mycontent img{
+            width:100%;
+        }
     </style>
 </head>
 
@@ -129,7 +131,7 @@
                         <small>副标题</small>
                     </h1>
                 </div>
-                <div>
+                <div class="mycontent">
                     ${currentBlog.content}
                 </div>
             </div>

@@ -38,16 +38,16 @@ public class BlogAction extends ActionSupport implements ModelDriven <Blogs>{
      */
     public String saveBlog() throws UnsupportedEncodingException, ParseException {
 //        System.out.println(blog.getBid());
-        System.out.println(blog.getContent());
-        System.out.println(blog.getTitle());
-        System.out.println(blog.getImage());
-        System.out.println(blog.getPublishDate());
-        System.out.println(blog.getTitleImage());
+//        System.out.println(blog.getContent());
+//        System.out.println(blog.getTitle());
+//        System.out.println(blog.getImage());
+//        System.out.println(blog.getPublishDate());
+//        System.out.println(blog.getTitleImage());
         HttpServletRequest request=ServletActionContext.getRequest();
         request.setCharacterEncoding("utf-8");
         String content=request.getParameter("editorValue");
         System.out.println("s2输出内容"+content);
-//        |||||[{id=1}{title=231}{publishDate=2017/10/4/16/48}{image=null}{titleImage=null}]|||||
+//        |||||[{id=1}{title=231}{publishDate=2017/10/4/16/48}{image=null}]|||||
 //        System.out.println(content.indexOf("|||||["));
         int start=content.indexOf("|||||[")+6;
         int end=content.indexOf("]|||||");
@@ -55,7 +55,7 @@ public class BlogAction extends ActionSupport implements ModelDriven <Blogs>{
         System.out.println(content.substring(start,end));
         String newStr=content.substring(start,end);
         String []strArray=newStr.split("}");
-        String []finalStr=new String[3];
+        String []finalStr=new String[2];
         for(int i=0;i<strArray.length;i++){
             String []temp=strArray[i].split("=");
             finalStr[i]=temp[1];
@@ -63,12 +63,17 @@ public class BlogAction extends ActionSupport implements ModelDriven <Blogs>{
         }
         Date date = new Date();
         User u= (User) ActionContext.getContext().getSession().get("user");
+        String[] titleImage=finalStr[1].split("\\(\\)");
+        System.out.println(titleImage[0]);
         blog.setTitle(finalStr[0]);
         blog.setUser(u);
         blog.setImage(finalStr[1]);
-        blog.setTitleImage(finalStr[2]);
+        blog.setTitleImage(titleImage[0]);
         blog.setPublishDate(date);
         blog.setContent(newContent);
+        ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
+        ActionContext.getContext().getValueStack().set("currentBlog",blog);
+
         blogService.saveBlog(blog);
         return "saveBlog";
     }

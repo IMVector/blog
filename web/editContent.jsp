@@ -129,13 +129,11 @@
                     <%--//无图处理--%>
                     if (image !== null && image !== "" && image !== undefined) {
                     str2 =image;
-                    str3 =titleImage;
                     } else {
                     str2 ="null";
-                    str3 ="null";
                     }
                     //字符串拼接
-                    var hideStr="|||||[{title="+title+"}{image="+str2+"}{titleImage="+str3+"}]|||||";
+                    var hideStr="|||||[{title="+title+"}{image="+str2+"}]|||||";
                     //向edit添加内容
                     UE.getEditor('editor').setContent(hideStr, true);
                     $("#contentForm").attr({ "action": act, "method": "post" });

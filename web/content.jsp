@@ -19,7 +19,9 @@
 
 
     <style>
-
+        .mycontent img{
+            width:100%;
+        }
     </style>
 </head>
 
@@ -114,40 +116,21 @@
         <div class="col-md-9">
             <div class="panel panel-primary">
                 <div class="panel-heading">内容
-                    <a class="btn btn-danger col-md-offset-10" href="${pageContext.request.contextPath}/blog_first.action">返回</a>
+                    <a class="btn btn-danger col-md-offset-9" href="${pageContext.request.contextPath}/blog_deleteBlog.action?bid=${currentBlog.bid}">删除</a>
+
+                    <a class="btn btn-danger " href="${pageContext.request.contextPath}/blog_first.action">返回</a>
                 </div>
 
                 <div class="page-header text-center">
                     <h1>主标题${currentBlog.title}<small>副标题</small></h1>
                 </div>
-                <div>
+                <div class="mycontent">
                     <%--<s:property value="currentBlog.content"/>--%>
                     ${currentBlog.content}
 
                     <br>
                     <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+
                 </div>
             </div>
         </div>

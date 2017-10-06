@@ -178,6 +178,10 @@ public class UserAction extends ActionSupport implements ModelDriven {
         return "goToContent";
     }
 
+    /**
+     * 用户信息修改
+     * @return
+     */
     public String updateUser(){
         User u = (User) ActionContext.getContext().getSession().get("user");
         String md5= MD5Utils.md5(user.getPassword());
@@ -208,6 +212,13 @@ public class UserAction extends ActionSupport implements ModelDriven {
         userService.updateUser(user);
         return "update";
     }
+    public String deleteBlog(){
+        System.out.println("bid value is"+bid);
+        blogService.deleteBlog(bid);
+        return "deleteBlog";
+    }
+
+}
 //        public void setBlog(Blogs blog){
 //        this.blog=blog;
 //    }
@@ -218,9 +229,6 @@ public class UserAction extends ActionSupport implements ModelDriven {
 //        blogService.saveBlog(blog);
 //        return "saveBlog";
 //    }
-
-}
-
 
 //{ajax 传输数据时小心指针，有指针解析不了
 //        if (blogsList != null && blogsList.size() > 0) {
